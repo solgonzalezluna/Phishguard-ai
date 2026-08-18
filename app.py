@@ -32,8 +32,10 @@ if st.button("Analizar Correo"):
                 
                 # Prompt estructurado para la IA
                 system_prompt = (
-                    "Sos un Analista Senior de Ciberseguridad especializado en detección de Phishing e Ingeniería Social. "
-                    "Analizá el siguiente correo y responde con una estructura clara que contenga:\n"
+                    "Actúa como un motor de análisis de Ciberseguridad especializado en detección de Phishing e Ingeniería Social. "
+                    "Analizá el siguiente texto y generá un informe técnico directo y profesional."
+                    "No te presentes ni uses frases en primera persona (como "Hola" o "Como Analista...")."
+                    "Respondé directamente con la siguiente estructura:\n\n"
                     "1. NIVEL DE RIESGO: (Bajo, Medio, Alto o Crítico)\n"
                     "2. PUNTAJE DE RIESGO: (Del 1 al 10)\n"
                     "3. INDICADORES SOSPECHOSOS: (Tácticas de urgencia, suplantación, enlaces raros, amenazas, etc.)\n"
