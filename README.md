@@ -40,11 +40,11 @@ Este proyecto es un analizador basado en un modelo de lenguaje general (LLM) con
 
 ## Cómo correrlo localmente
 
-\`\`\`bash
+```bash
 git clone https://github.com/solgonzalezluna/Phishguard-ai.git
 cd Phishguard-ai
 pip install -r requirements.txt
 streamlit run app.py
-\`\`\`
+```
 
 Necesitás una API Key de Google Gemini ([obtenerla acá](https://aistudio.google.com/)) configurada como variable de entorno `GEMINI_API_KEY` o en `st.secrets`.
