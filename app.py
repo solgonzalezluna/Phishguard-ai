@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from google import genai
 
@@ -8,24 +9,25 @@ st.title("🛡️ PhishGuard AI")
 st.subheader("Detector Inteligente de Phishing con IA")
 st.write("Pegá el contenido de un correo sospechoso para que nuestro analizador determine si es un ataque.")
 
-# Barra lateral para credenciales
+# Obtener API Key de Secrets o variables de entorno
+api_key = st.secrets.get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
+
+# Barra lateral informativa
 with st.sidebar:
     st.header("Configuración")
-import os
-api_key = st.secrets.get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
-st.markdown("[Obtener API Key en Google AI Studio](https://aistudio.google.com/)")
+    st.markdown("[Obtener API Key en Google AI Studio](https://aistudio.google.com/)")
 
 # Área de texto principal
 email_text = st.text_area("Contenido del correo electrónico:", height=200, placeholder="Estimado cliente, su cuenta ha sido suspendida...")
 
 # Botón de análisis
 if st.button("Analizar Correo"):
-    elif not email_text.strip():
+    if not email_text.strip():
         st.warning("Por favor, pegá el texto de un correo para analizar.")
     else:
         with st.spinner("Analizando patrones de ingeniería social..."):
             try:
-                # Inicializar el cliente de Gemini con el SDK oficial
+                # Inicializar el cliente de Gemini con la API Key
                 client = genai.Client(api_key=api_key)
                 
                 # Prompt estructurado para la IA
@@ -40,7 +42,7 @@ if st.button("Analizar Correo"):
                 )
                 
                 response = client.models.generate_content(
-                    model='gemini-3.6-flash',
+                    model='gemini-2.5-flash',
                     contents=system_prompt,
                 )
                 
