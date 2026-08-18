@@ -11,16 +11,15 @@ st.write("Pegá el contenido de un correo sospechoso para que nuestro analizador
 # Barra lateral para credenciales
 with st.sidebar:
     st.header("Configuración")
-    api_key = st.text_input("Ingresá tu Google Gemini API Key:", type="password")
-    st.markdown("[Obtener API Key en Google AI Studio](https://aistudio.google.com/)")
+import os
+api_key = st.secrets.get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
+st.markdown("[Obtener API Key en Google AI Studio](https://aistudio.google.com/)")
 
 # Área de texto principal
 email_text = st.text_area("Contenido del correo electrónico:", height=200, placeholder="Estimado cliente, su cuenta ha sido suspendida...")
 
 # Botón de análisis
 if st.button("Analizar Correo"):
-    if not api_key:
-        st.error("Por favor, ingresá tu API Key en la barra lateral.")
     elif not email_text.strip():
         st.warning("Por favor, pegá el texto de un correo para analizar.")
     else:
